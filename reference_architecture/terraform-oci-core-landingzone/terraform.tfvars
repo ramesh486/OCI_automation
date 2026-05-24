@@ -1,9 +1,10 @@
-budget_alert_email_endpoints = ["vishalprasad8725@gmail.com"]
-budget_amount = 1
+budget_alert_email_endpoints = ["rameshkrishnan@ebizoncloud.com"]
+budget_amount = 1000
 cis_level = "1"
 compartment_name = "root"
-create_budget = true
+create_bucket = true
 enable_cloud_guard = false
-network_admin_email_endpoints = ["vishalprasad8725@gmail.com"]
-security_admin_email_endpoints = ["vishalprasad8725@gmail.com"]
-service_label = "corelz"
+network_admin_email_endpoints = ["rameshkrishnan@ebizoncloud.com"]
+region = "us-ashburn-1"
+security_admin_email_endpoints = ["rameshkrishnan@ebizoncloud.com"]
+service_label = "corelnz"

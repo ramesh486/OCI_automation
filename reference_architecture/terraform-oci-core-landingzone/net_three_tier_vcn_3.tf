@@ -1,5 +1,7 @@
 # Copyright (c) 2023, 2025, Oracle and/or its affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
+# Copyright (c) 2023, 2025, Oracle and/or its affiliates.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
 
 locals {
 
@@ -69,6 +71,15 @@ locals {
           display_name = "${coalesce(var.tt_vcn3_bastion_subnet_name, "${var.service_label}-three-tier-vcn-3-bastion-subnet")}-security-list"
           ingress_rules = [
             {
+              description = "Ingress on UDP type 3 code 4."
+              stateless   = false
+              protocol    = "UDP"
+              src         = "0.0.0.0/0"
+              src_type    = "CIDR_BLOCK"
+              icmp_type   = 3
+              icmp_code   = 4
+            },
+            {
               description  = "Ingress from ${coalesce(var.tt_vcn3_bastion_subnet_name, "${var.service_label}-three-tier-vcn-3-bastion-subnet")} on SSH port. Required for connecting Bastion service endpoint to Bastion host."
               stateless    = false
               protocol     = "TCP"
@@ -99,7 +110,7 @@ locals {
             route_rules = merge(
               (local.chosen_hub_option != 3 && local.chosen_hub_option != 4) ? {
                 "INTERNET-RULE" = {
-                  network_entity_key = var.tt_vcn3_web_subnet_is_private == false ? "TT-VCN-3-INTERNET-GATEWAY" : "TT-VCN-3-NAT-GATEWAY"
+                  network_entity_key = var.tt_vcn1_web_subnet_is_private == false ? "TT-VCN-3-INTERNET-GATEWAY" : "TT-VCN-3-NAT-GATEWAY"
                   description        = "To Internet."
                   destination        = "0.0.0.0/0"
                   destination_type   = "CIDR_BLOCK"

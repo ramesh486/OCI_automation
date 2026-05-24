@@ -1,5 +1,7 @@
 # Copyright (c) 2023, 2025, Oracle and/or its affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
+# Copyright (c) 2023, 2025, Oracle and/or its affiliates.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
 
 locals {
 
@@ -68,6 +70,15 @@ locals {
         "TT-VCN-2-BASTION-SUBNET-SL" = {
           display_name = "${coalesce(var.tt_vcn2_bastion_subnet_name, "${var.service_label}-three-tier-vcn-2-bastion-subnet")}-security-list"
           ingress_rules = [
+            {
+              description = "Ingress on UDP type 3 code 4."
+              stateless   = false
+              protocol    = "UDP"
+              src         = "0.0.0.0/0"
+              src_type    = "CIDR_BLOCK"
+              icmp_type   = 3
+              icmp_code   = 4
+            },
             {
               description  = "Ingress from ${coalesce(var.tt_vcn2_bastion_subnet_name, "${var.service_label}-three-tier-vcn-2-bastion-subnet")} on SSH port. Required for connecting Bastion service endpoint to Bastion host."
               stateless    = false
