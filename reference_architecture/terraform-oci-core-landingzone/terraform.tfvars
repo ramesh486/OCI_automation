@@ -1,0 +1,9 @@
+budget_alert_email_endpoints = ["vishalprasad8725@gmail.com"]
+budget_amount = 1
+cis_level = "1"
+compartment_name = "root"
+create_budget = true
+enable_cloud_guard = false
+network_admin_email_endpoints = ["vishalprasad8725@gmail.com"]
+security_admin_email_endpoints = ["vishalprasad8725@gmail.com"]
+service_label = "corelz"
